@@ -159,6 +159,6 @@ class cifar10(object):
                     self.test_indexs.clear()
         return  np.array(batch_image).transpose(0,3,2,1).reshape(-1,32,32,3), batch_label,data_index    
     def resize_image(self, image, new_size):
-        
-        return image          
+        img = Image.fromarray(image.astype('uint8').transpose(2,1,0))       
+        return np.asarray(img.resize(new_size,resample=Image.BILINEAR)).transpose(1,2,0)         
         
